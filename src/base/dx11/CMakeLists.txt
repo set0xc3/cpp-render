@@ -1,2 +1,3 @@
 project(dx11)
-add_executable(dx11 main.cpp)
+
+add_executable(${PROJECT_NAME} main.cpp)

@@ -1,2 +1,3 @@
 project(vk)
-add_executable(vk main.cpp)
+
+add_executable(${PROJECT_NAME} main.cpp)

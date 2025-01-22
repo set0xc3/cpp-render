@@ -25,7 +25,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #   message(FATAL_ERROR "Boost not found!")
 # endif()
 
-add_subdirectory(src)
+find_package(SDL2 REQUIRED)
+find_package(assimp REQUIRED)
+find_package(imgui REQUIRED)
 
-# Подключите найденные библиотеки Boost к вашему проекту
-#target_link_libraries(test Boost::thread)
+add_subdirectory(src)

@@ -1,2 +1,3 @@
 project(dx12)
-add_executable(dx12 main.cpp)
+
+add_executable(${PROJECT_NAME} main.cpp)

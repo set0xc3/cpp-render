@@ -4,7 +4,7 @@
     "command": "cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug && cmake --build build --parallel $(nproc)",
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
-    "reveal": "never",
+    "reveal": "always",
     "reveal_target": "dock",
     "hide": "never",
     "shell": "system"
@@ -14,17 +14,17 @@
     "command": "cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Relase && cmake --build build --parallel $(nproc)",
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
-    "reveal": "no_focus",
+    "reveal": "always",
     "reveal_target": "dock",
     "hide": "never",
     "shell": "system"
   },
   {
-    "label": "Run (Debug)",
-    "command": "./build/test",
+    "label": "Run gl-core (Debug)",
+    "command": "cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug && cmake --build build --parallel $(nproc) && ./build/src/base/gl-core/gl-core",
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
-    "reveal": "never",
+    "reveal": "always",
     "reveal_target": "dock",
     "hide": "never",
     "shell": "system"
