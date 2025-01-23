@@ -1,44 +1,40 @@
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_keycode.h>
-#include <assimp/Importer.hpp>
-#include <assimp/postprocess.h>
-#include <assimp/scene.h>
+#include <iostream>
+#include <memory>
+#include <stop_token>
 
-#include <imgui.h>
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-
-bool quit;
-SDL_Window *window;
-SDL_Renderer *renderer;
+#include "winit.hpp"
 
 int main(int argc, char *argv[]) {
-  SDL_Init(SDL_INIT_VIDEO);
-  window = SDL_CreateWindow("gl-core", SDL_WINDOWPOS_UNDEFINED,
-                            SDL_WINDOWPOS_UNDEFINED, 1920, 1080, 0);
+  std::unique_ptr<my::winit> winit = std::make_unique<my::winit>();
 
+  winit->init();
+
+  bool quit = false;
   while (!quit) {
     SDL_Event event;
-    SDL_PollEvent(&event);
-
-    switch (event.type) {
-    case SDL_QUIT: {
-      quit = true;
-      break;
-    }
-
-    case SDL_KEYDOWN: {
-      if (event.key.keysym.sym == SDLK_ESCAPE) {
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
+      case SDL_QUIT:
         quit = true;
+        break;
+      case SDL_KEYDOWN:
+        if (event.key.keysym.sym == SDLK_ESCAPE) {
+          quit = true;
+        }
+        break;
+      default:
+        break;
       }
-      break;
     }
 
-      SDL_Delay(1);
-      return 0;
-    }
+    // ...
+
+    using namespace std::chrono_literals;
+    std::this_thread::sleep_for(1ms);
   }
 
+  // Автоматическое освобождение ресурсов происходит благодаря умным указателям
   SDL_Quit();
+
+  return 0;
 }

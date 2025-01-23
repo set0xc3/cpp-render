@@ -6,9 +6,10 @@ if(POLICY CMP0167)
   cmake_policy(SET CMP0167 NEW)
 endif()
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Укажите, хотите ли вы использовать статические или динамические библиотеки
@@ -28,5 +29,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(SDL2 REQUIRED)
 find_package(assimp REQUIRED)
 find_package(imgui REQUIRED)
+
+# GLAD
+include_directories(${PROJECT_SOURCE_DIR}/vendor/glad-debug/include)
+add_library(glad STATIC ${PROJECT_SOURCE_DIR}/vendor/glad-debug/src/glad.c)
 
 add_subdirectory(src)
