@@ -12,6 +12,7 @@
 namespace my {
 struct WindowInfo {
   uint32_t id;
+  SDL_GLContext gl_context;
   std::weak_ptr<WindowInfo> parent;
   std::map<uint32_t, std::weak_ptr<WindowInfo>> children;
 };
@@ -31,7 +32,6 @@ public:
 
 private:
   Window m_window_root;
-  std::map<uint32_t, std::weak_ptr<WindowInfo>> m_windows;
-  SDL_GLContext m_gl_context;
+  std::map<uint32_t, std::shared_ptr<WindowInfo>> m_windows; // Изменено на shared_ptr
 };
 } // namespace my
